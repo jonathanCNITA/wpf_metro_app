@@ -10,7 +10,7 @@
         <TextBox Name="lon" HorizontalAlignment="Left" Height="23" Margin="10,55,0,0" TextWrapping="Wrap" Text="lon" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
         <TextBox Name="lat" HorizontalAlignment="Left" Height="23" Margin="10,92,0,0" TextWrapping="Wrap" Text="lat" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" RenderTransformOrigin="0.5,3.913"/>
         <TextBox Name="dist" HorizontalAlignment="Left" Height="23" Margin="10,132,0,0" TextWrapping="Wrap" Text="dist" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" RenderTransformOrigin="0.5,3.913"/>
-        <TextBlock Name="info" HorizontalAlignment="Left" Margin="200,55,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="255" Width="565"/>
+        <TextBlock Name="info" HorizontalAlignment="Left" Margin="200,55,0,0" TextWrapping="Wrap" Text="INFO" VerticalAlignment="Top" Height="255" Width="565"/>
         <Button Name="buttonOk" Content="Button" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Width="120" Click="Click_Me"/>
     </Grid>
 </Window>

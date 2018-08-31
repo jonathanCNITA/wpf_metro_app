@@ -57,7 +57,8 @@ namespace WpfApp1
 
         private void SetRequest()
         {
-            MetroReq LinesReq = new MetroReq("5.72792", "45.18549", "500");
+            // MetroReq LinesReq = new MetroReq("5.72792", "45.18549", "500");
+            MetroReq LinesReq = new MetroReq(lat.Text, lon.Text, dist.Text);
             List<StationModel> stations = JsonConvert.DeserializeObject<List<StationModel>>(LinesReq.GetResponseAsString());
 
             stationsDict = new Dictionary<string, List<string>>();
