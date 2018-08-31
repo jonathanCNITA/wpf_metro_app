@@ -29,28 +29,31 @@ namespace WpfApp1
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_TextChanged( object sender, TextChangedEventArgs e )
         {
-
+            // should check is values are OK 
         }
 
         private void Click_Me(object sender, RoutedEventArgs e)
         {
-            SetRequest();
-            info.Text = "";
-            foreach (KeyValuePair<string, List<string>> station in stationsDict)
+            info.Text = "Fetching datas";
+            
+            if( allUserInputValid() )
             {
-                if (stationsDict.Count > 0)
+                SetRequest();
+                info.Text = "";
+                foreach( KeyValuePair<string, List<string>> station in stationsDict )
                 {
-                    info.Text += (station.Key) + "\n";
-                    foreach (string line in station.Value)
+                    info.Text += ( station.Key ) + "\n";
+                    foreach( string line in station.Value )
                     {
                         info.Text += line + "\n";
                     }
-                } else
-                {
-                    info.Text = "No data founded";
                 }
+            }
+            else
+            {
+                info.Text = "Some input values are not valid";
             }
 
         }
@@ -58,11 +61,31 @@ namespace WpfApp1
         private void SetRequest()
         {
             // MetroReq LinesReq = new MetroReq("5.72792", "45.18549", "500");
+            
             MetroReq LinesReq = new MetroReq(lat.Text, lon.Text, dist.Text);
             List<StationModel> stations = JsonConvert.DeserializeObject<List<StationModel>>(LinesReq.GetResponseAsString());
 
             stationsDict = new Dictionary<string, List<string>>();
             stationsDict = ToolBox.GetListNameWithoutDuplicateAsDictionnary(stations);
+            
         }
+
+        
+        Boolean isValid(string n)
+        {
+            if( n.IndexOf(".") >= 0 )
+            {
+                StringBuilder sb = new StringBuilder(n);
+                sb[n.IndexOf(".")] = ',';
+                n = sb.ToString();
+            }
+            return float.TryParse(n, out float toto);
+        }
+
+        Boolean allUserInputValid()
+        {
+            return (isValid(lon.Text) && isValid(lat.Text) && isValid(dist.Text));
+        }
+        
     }
 }
